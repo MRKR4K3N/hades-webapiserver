@@ -36,14 +36,13 @@ class client_handler:
                     dest = "index"
 
                 dest = dest.replace("/","").replace("..","")
-
                 try:
                     mods = imp.load_source('module.name', self.configs["web_modules"]+dest+'.py')
                     start_= mods.start(headers,self.ip,self.params,req,self.post_data,self.configs,self.cookies_handler)
                     status_code , self.return_data = start_.execute()
                 except IOError:
                     status_code = 404
-                    self.return_data["data"] = "'%s' Not Found"%(dest)
+                    self.return_data["data"] = "File Not Found"%(dest)
                     pass
                 stc = sndtchndlr.send_to_client(status_code,self.return_data,self.conn)
                 stc.start()
