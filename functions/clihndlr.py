@@ -53,6 +53,10 @@ class client_handler:
             else:
                 self.conn.close()
         except Exception, e:
+            status_code = 404
+            self.return_data["data"] = "File Not Found"%(dest)
+            stc = sndtchndlr.send_to_client(status_code,self.return_data,self.conn)
+            stc.start()
             print e
             self.conn.close()
         self.conn.close()
