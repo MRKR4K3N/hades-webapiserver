@@ -9,7 +9,7 @@ headers_code = {200:"OK",
 
 def build_header(status_code,Length,type,add_head = {}):
     header = {
-              "Server":"hades-ApiServer/1.0",
+              "Server":"hades-WebApiServer/1.0",
               "Content-Type":type,
               "Content-Length":Length,
               "Access-Control-Allow-Origin": "*"
