@@ -42,7 +42,7 @@ class client_handler:
                     status_code , self.return_data = start_.execute()
                 except IOError:
                     status_code = 404
-                    self.return_data["data"] = "File Not Found"%(dest)
+                    self.return_data["data"] = "File Not Found"
                     pass
                 stc = sndtchndlr.send_to_client(status_code,self.return_data,self.conn)
                 stc.start()
@@ -54,7 +54,7 @@ class client_handler:
                 self.conn.close()
         except Exception, e:
             status_code = 404
-            self.return_data["data"] = "File Not Found"%(dest)
+            self.return_data["data"] = "File Not Found"
             stc = sndtchndlr.send_to_client(status_code,self.return_data,self.conn)
             stc.start()
             print e
