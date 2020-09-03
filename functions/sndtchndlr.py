@@ -1,4 +1,5 @@
 # this is script is responsible for creating a server header and send data to clients
+#
 
 import socket,magic
 #HTTP/1.1 200 OK

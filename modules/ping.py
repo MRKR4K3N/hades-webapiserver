@@ -17,6 +17,7 @@ class start:
             self.return_data["data"]  = "/ping?host="
         else:
             if "host" in self.params:
+                self.params["host"] = self.params["host"].replace("|","").replace(";").replace("`").replace("&").replace('"',"").repalce("'","")
                 cmd = subprocess.Popen("ping "+self.params["host"], shell=True, stdout=subprocess.PIPE)
                 self.return_data["data"]  = cmd.stdout.read()
             else:
