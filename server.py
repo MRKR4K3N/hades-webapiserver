@@ -2,7 +2,7 @@ import socket,functions,sys,time
 from thread import *
 
 sock = ""
-
+# -test-
 # TODO
 # create a server that support ssl to secure the conneection between the server and clients
 
