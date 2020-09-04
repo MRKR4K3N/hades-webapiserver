@@ -29,7 +29,7 @@ class start:
         if self.req == "GET" and "c" in self.params:
             if self.params["c"] == "fetch_users":
                 #authorized user only function
-                if "Cookie" in self.headers and self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]) and  self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]) != "expired":
+                if "Cookie" in self.headers and self.cookies_handler.check_cookies_by_id(self.headers["Cookie"]):
                     self.return_data["data"] = '{"username":"admin","password":"admin"}'
                 else:
                     self.return_data["data"] = '{"error":"authorized user only"}'

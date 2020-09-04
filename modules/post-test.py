@@ -41,7 +41,7 @@ class start:
                     print self.cookies_handler.get_cookies()
                 elif self.params["c"] == "check_cookies":
                     print self.cookies_handler.check_cookies_by_id(self.headers["Cookie"])
-                elif self.params["c"] == "delete_cookies":
+                elif self.params["c"] == "delete_cookies" or self.params["c"] == "log_out":
                     print self.cookies_handler.delete_cookies(self.headers["Cookie"])
             elif "username" in self.params:
                 if self.params["username"] == "admin":

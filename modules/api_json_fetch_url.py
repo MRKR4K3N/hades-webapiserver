@@ -7,7 +7,7 @@ def gen_random(plugin_path,length):
 
 def check_url(whitelist,url):
     for i in whitelist:
-        if i in url:
+        if i == url:
             return True
     return False
 
@@ -23,7 +23,7 @@ class start:
         self.cookies_handler = cookies_handler
         self.stt_code = 200
         self.return_data = {"data":"<html></html>"}
-        self.whitelist = ["www.w3schools.com"]
+        self.whitelist = ["https://www.w3schools.com"]
         pass
 
     def execute(self):

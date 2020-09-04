@@ -1,7 +1,16 @@
 # this class only can access from listhndlr to handle the clients
 # responsible to handle the clients requests and the function modules
 
-import socket,drecvhndlr,headhndlr,imp,sndtchndlr
+import socket,imp
+
+functions_ ={
+             "headhndlr":"headhndlr.py",
+             "drecvhndlr":"drecvhndlr.py",
+             "sndtchndlr":"sndtchndlr.py"
+             }
+
+def import_function(f_function):
+    return imp.load_source('module.name', f_function)
 
 class client_handler:
     def __init__(self,ip,conn,configs,cookies_handler):
@@ -12,10 +21,15 @@ class client_handler:
         self.post_data = {}
         self.return_data = {"data":"","add_head":{}}
         self.cookies_handler = cookies_handler
+        self.isupload = False
 
     def client_room(self):
         #print "[+] incoming connection from: "+self.ip
+        headhndlr = import_function(self.configs["functions_paths"]+functions_["headhndlr"])
+        drecvhndlr = import_function(self.configs["functions_paths"]+functions_["drecvhndlr"])
+        sndtchndlr = import_function(self.configs["functions_paths"]+functions_["sndtchndlr"])
         data = drecvhndlr.get_data(self.conn)
+        print data
         try:
             if data:
                 head_data = headhndlr.Get_header(data)

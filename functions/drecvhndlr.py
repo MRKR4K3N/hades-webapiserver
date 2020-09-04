@@ -9,7 +9,7 @@ def get_data(conn):
         while True:
             ready = select.select([conn], [], [], 0.01)
             if ready[0]:
-                data += conn.recv(99999)
+                data += conn.recv(1000000)
             else:
                 break
         conn.setblocking(1)
