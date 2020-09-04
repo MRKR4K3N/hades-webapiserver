@@ -29,7 +29,6 @@ class client_handler:
         drecvhndlr = import_function(self.configs["functions_paths"]+functions_["drecvhndlr"])
         sndtchndlr = import_function(self.configs["functions_paths"]+functions_["sndtchndlr"])
         data = drecvhndlr.get_data(self.conn)
-        print data
         try:
             if data:
                 head_data = headhndlr.Get_header(data)
